@@ -1,8 +1,14 @@
 import React from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import Png1 from "./PNG.png";
+toast.configure();
 
 function Default() {
+  const notify = () => {
+    toast.success("Welcome To Add", { autoClose: 3000 });
+  };
   return (
     <>
       <div className="Card1">
@@ -15,7 +21,9 @@ function Default() {
         </p>
         <hr />
         <Link to="/add">
-        <button className="btn btn-primary">Start Your First Note</button>
+          <button onClick={notify} className="btn btn-primary">
+            Start Your First Note
+          </button>
         </Link>
       </div>
     </>

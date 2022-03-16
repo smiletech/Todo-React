@@ -61,6 +61,7 @@ main tage */
 .todo-card {
   position: relative;
   width: 180px;
+  margin-top: 15px;
   height: 140px;
   background-color: bisque;
   display: table-column;
@@ -69,6 +70,9 @@ main tage */
 .Main1 {
   margin-top: 50px;
   padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  flex-wrap: wrap;
   display: flex;
 }
 .Date-tilte {
