@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -45,18 +47,7 @@ function EditData() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
   }
-  //   const AddData = () => {
-  //     let obj = {
-  //       id: v4(),
-  //       Title: Title,
-  //       Note: Note,
-  //       date: date,
-  //     };
-  //     ARRDATA.push(obj);
-  //     console.log(ARRDATA);
-  //     localStorage.setItem("Note", JSON.stringify(ARRDATA));
-  //   };
-
+  
   const UpdateData = (id) => {
     const NewArr = JSON.parse(localStorage.getItem("Note"));
 

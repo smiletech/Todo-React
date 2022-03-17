@@ -65,7 +65,14 @@ main tage */
   height: 140px;
   background-color: bisque;
   display: table-column;
+  border-radius: 15px;
 }
+
+.todo-card:hover {
+  background-color: rgb(202, 190, 175);
+  cursor: pointer;
+}
+
 /*main */
 .Main1 {
   margin-top: 50px;
@@ -86,4 +93,17 @@ main tage */
 .btn1 {
   border: none;
   background-color: antiquewhite;
+  border-radius: 3px;
+  display: none;
+}
+.animated {
+  border: none;
+  background-color: antiquewhite;
+  display: inline;
+  border-radius: 20%;
+}
+
+.animated:hover {
+  background-color: rgb(6, 107, 6);
+  border-radius: 5px;
 }
