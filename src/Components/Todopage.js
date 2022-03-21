@@ -4,9 +4,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./Navbar";
 import TodoCard from "./TodoCard";
-
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useNavigate } from "react-router-dom";
+import Modal from "@material-ui/core/Modal";
+
 toast.configure();
 
 function Todopage() {
@@ -14,19 +15,24 @@ function Todopage() {
   const [array, setArray] = useState([]);
   const [Done1, setDone1] = useState([]);
   const [flag, setflag] = useState(true);
+
   let navigate = useNavigate();
 
   useEffect(() => {
-    let arr = JSON.parse(localStorage.getItem("Note"));
+    let arr = JSON.parse(localStorage.getItem("Note")) || [];
     setArray(arr);
-    let com = JSON.parse(localStorage.getItem("Completed"));
+
+    let com = JSON.parse(localStorage.getItem("Completed")) || [];
     setComplete(com.length);
+
     checkup();
-  }, [flag]);
+  }, []);
   const notify = () => {
     toast.success("Welcome To Add", { autoClose: 3000 });
   };
-
+  const notifyE = () => {
+    toast.error("Delete Sucessfully", { autoClose: 3000 });
+  };
   const checkup = () => {
     const ARRDATA = JSON.parse(localStorage.getItem("Note"));
     ARRDATA.length === 0 ? setflag(false) : setflag(true);
@@ -39,8 +45,9 @@ function Todopage() {
   }
 
   const deleteCard = (data) => {
-    localStorage.setItem("Note", JSON.stringify(data));
+    notifyE();
     setArray(data);
+    localStorage.setItem("Note", JSON.stringify(data));
     checkup();
   };
 
@@ -58,9 +65,11 @@ function Todopage() {
     ) {
       return;
     }
+
     let add;
     let active = array;
     let complete = Done1;
+
     // Source Logic
     if (source.droppableId === "TodoList") {
       add = active[source.index];
@@ -76,11 +85,9 @@ function Todopage() {
     } else {
       complete.splice(destination.index, 0, add);
     }
-
     setDone1(complete);
     setArray(active);
-
-    console.log("............." + result + source.index);
+    localStorage.setItem("Note", JSON.stringify(active));
   };
 
   return (
@@ -116,7 +123,9 @@ function Todopage() {
           )}
         </Droppable>
 
-        <div className="footer">Completed({Complete})</div>
+        <div className="footer">
+          Completed({Complete}) <i class="drop bi bi-caret-up-fill"></i>
+        </div>
       </DragDropContext>
     </>
   );

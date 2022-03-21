@@ -33,7 +33,7 @@ function EditData() {
     const count = daysInThisMonth();
     const obj = new Date();
     let days = obj.getDate() + day;
-    let month = obj.getMonth();
+    let month = obj.getMonth() + 1;
     const year = obj.getFullYear();
     if (days > count) {
       days -= count;
@@ -47,7 +47,7 @@ function EditData() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
   }
-  
+
   const UpdateData = (id) => {
     const NewArr = JSON.parse(localStorage.getItem("Note"));
 
@@ -124,5 +124,4 @@ function EditData() {
     </div>
   );
 }
-
 export default EditData;

@@ -19,16 +19,14 @@ function convertDate(inputFormat) {
 
 function TodoCard({ obj1, index, deleteCard, Done }) {
   const { id, Title, Note, date } = obj1;
-  const [arrayval, setarrayval] = useState([]);
+  
   const [hovered, setHovered] = useState(false);
 
   const toggleHover = () => setHovered(!hovered);
 
   let d = new Date(date);
   let date1 = convertDate(d);
-  const notify = () => {
-    toast.success("Welcome To Add", { autoClose: 3000 });
-  };
+  
   const notifyD = () => {
     toast.info("Welcome To Add", { autoClose: 3000 });
   };
@@ -41,7 +39,7 @@ function TodoCard({ obj1, index, deleteCard, Done }) {
 
   useEffect(() => {
     doneArray = JSON.parse(localStorage.getItem("Completed"));
-  });
+  }, []);
 
   const CheckHandler = (index) => {
     if (window.confirm("Your Task Completed !..")) {
@@ -64,9 +62,7 @@ function TodoCard({ obj1, index, deleteCard, Done }) {
     const ARRDATA = JSON.parse(localStorage.getItem("Note"));
     if (window.confirm("Do You Want To Delete Card !..")) {
       ARRDATA.splice(index, 1);
-
       deleteCard(ARRDATA);
-      timeDelay();
     }
   };
 
@@ -75,7 +71,7 @@ function TodoCard({ obj1, index, deleteCard, Done }) {
   }
   return (
     <>
-      <Draggable draggableId={obj1.id.toString()} index={index}>
+      <Draggable draggableId={index.toString()} index={index}>
         {(providered, snapshot) => (
           <div
             className="todo-card ms-4"

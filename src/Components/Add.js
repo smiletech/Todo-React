@@ -28,7 +28,7 @@ function Add() {
     const count = daysInThisMonth();
     const obj = new Date();
     let days = obj.getDate() + day;
-    let month = obj.getMonth();
+    let month = obj.getMonth() + 1;
     const year = obj.getFullYear();
     if (days > count) {
       days -= count;

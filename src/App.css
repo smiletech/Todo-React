@@ -58,18 +58,21 @@ main tage */
   text-align: center;
   color: rgb(84, 84, 170);
 }
+.drop {
+  cursor: pointer;
+}
 .todo-card {
   position: relative;
   width: 180px;
   margin-top: 15px;
   height: 140px;
-  background-color: bisque;
+  background-color: rgb(169, 196, 187);
   display: table-column;
   border-radius: 15px;
 }
 
 .todo-card:hover {
-  background-color: rgb(202, 190, 175);
+  background-color: rgb(146, 155, 152);
   cursor: pointer;
 }
 
@@ -79,6 +82,7 @@ main tage */
   padding-top: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  min-height: 88vh;
   flex-wrap: wrap;
   display: flex;
 }

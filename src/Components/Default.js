@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import Png1 from "./PNG.png";
+import { useNavigate } from "react-router-dom";
 toast.configure();
 
 function Default() {
+  const [flag, setflag] = useState(true);
+  let navigate = useNavigate();
+
   const notify = () => {
     toast.success("Welcome To Add", { autoClose: 3000 });
   };
+
+  useEffect(() => {
+    checkup();
+  }, []);
+  const checkup = () => {
+    const ARRDATA = JSON.parse(localStorage.getItem("Note"));
+    ARRDATA.length === 0 ? setflag(false) : setflag(true);
+    console.log(ARRDATA.length);
+    flag ? navigate("/list") : navigate("/default");
+  };
+
   return (
     <>
       <div className="Card1">

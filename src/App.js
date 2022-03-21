@@ -5,19 +5,16 @@ import Add from "./Components/Add";
 import Default from "./Components/Default";
 import Todopage from "./Components/Todopage";
 import EditData from "./Components/EditData";
-
+import Modale from "./Components/Modale";
 
 function App() {
-  
-  
-
- 
   useEffect(() => {
     // checkup();
   }, []);
 
   return (
     <>
+      {/* <Modale /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Default />} />
