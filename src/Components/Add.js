@@ -9,7 +9,7 @@ ARRDATA = JSON.parse(localStorage.getItem("Note")) || [];
 function Add() {
   const [Title, setTitle] = useState("");
   const [Note, setNote] = useState("");
-  const [TimeP, setTimeP] = useState("");
+  // const [TimeP, setTimeP] = useState("");
   const [date, setdate] = useState(new Date());
 
   const TimeHandler = (index) => {
@@ -55,9 +55,7 @@ function Add() {
   };
 
   useEffect(() => {
-    console.log(Title);
-    console.log(Note);
-    console.log("titlr" + date);
+    ARRDATA = JSON.parse(localStorage.getItem("Note")) || [];
   }, [date]);
 
   console.log(date);

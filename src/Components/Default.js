@@ -13,16 +13,17 @@ function Default() {
   const notify = () => {
     toast.success("Welcome To Add", { autoClose: 3000 });
   };
-
-  useEffect(() => {
-    checkup();
-  }, []);
-  const checkup = () => {
+  const checkup12 = () => {
     const ARRDATA = JSON.parse(localStorage.getItem("Note"));
     ARRDATA.length === 0 ? setflag(false) : setflag(true);
-    console.log(ARRDATA.length);
     flag ? navigate("/list") : navigate("/default");
+
+    console.log(ARRDATA.length);
   };
+
+  useEffect(() => {
+    // checkup12();
+  }, [flag]);
 
   return (
     <>

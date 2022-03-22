@@ -7,6 +7,7 @@ import TodoCard from "./TodoCard";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useNavigate } from "react-router-dom";
 import Modal from "@material-ui/core/Modal";
+import Modale from "./Modale";
 
 toast.configure();
 
@@ -15,6 +16,7 @@ function Todopage() {
   const [array, setArray] = useState([]);
   const [Done1, setDone1] = useState([]);
   const [flag, setflag] = useState(true);
+  const [Check, setCheck] = useState(false);
 
   let navigate = useNavigate();
 
@@ -26,7 +28,8 @@ function Todopage() {
     setComplete(com.length);
 
     checkup();
-  }, []);
+  }, [flag]);
+
   const notify = () => {
     toast.success("Welcome To Add", { autoClose: 3000 });
   };
@@ -40,10 +43,6 @@ function Todopage() {
     flag ? navigate("/list") : navigate("/default");
   };
 
-  async function timeDelay() {
-    await setTimeout(() => {}, 3000);
-  }
-
   const deleteCard = (data) => {
     notifyE();
     setArray(data);
@@ -53,6 +52,7 @@ function Todopage() {
 
   const Done = (e) => {
     setComplete(e);
+    checkup();
   };
   const EditValue = () => {};
 
@@ -90,6 +90,9 @@ function Todopage() {
     localStorage.setItem("Note", JSON.stringify(active));
   };
 
+  const Lendata = (datalen) => {
+    setComplete(datalen);
+  };
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -101,7 +104,7 @@ function Todopage() {
             </button>
           </Link>
         </div>
-        <Droppable droppableId="TodoList">
+        <Droppable droppableId="TodoList" direction="horizontal" axis="xy">
           {(providered) => (
             <main
               className="Main1"
@@ -124,7 +127,12 @@ function Todopage() {
         </Droppable>
 
         <div className="footer">
-          Completed({Complete}) <i class="drop bi bi-caret-up-fill"></i>
+          Completed({Complete}){" "}
+          <i
+            onClick={() => setCheck(!Check)}
+            class="drop bi bi-caret-up-fill"
+          ></i>
+          {Check ? <Modale Lendata={Lendata} /> : ""}
         </div>
       </DragDropContext>
     </>

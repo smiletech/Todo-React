@@ -6,8 +6,16 @@ import Default from "./Components/Default";
 import Todopage from "./Components/Todopage";
 import EditData from "./Components/EditData";
 import Modale from "./Components/Modale";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  // const checkup = () => {
+  //   const ARRDATA = JSON.parse(localStorage.getItem("Note"));
+  //   ARRDATA.length === 0 ? setflag(false) : setflag(true);
+  //   flag ? navigate("/list") : navigate("/default");
+
+  //   console.log(ARRDATA.length);
+  // };
   useEffect(() => {
     // checkup();
   }, []);

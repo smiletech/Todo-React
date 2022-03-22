@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function EditData() {
-  const [Title, setTitle] = useState("");
-  const [Note, setNote] = useState("");
-  const { id } = useParams();
   const location = useLocation();
-  const [date, setdate] = useState(new Date());
-
   const { state } = location;
+  let navigate = useNavigate();
+  const [Title, setTitle] = useState(state.Title);
+  const [Note, setNote] = useState(state.Note);
+  const { id } = useParams();
+  const [date, setdate] = useState(new Date());
 
   console.log(id);
   console.log(state);
@@ -63,8 +63,13 @@ function EditData() {
     for (let i = 0; i < NewArr.length; i++) {
       console.log("array id :- " + NewArr[i].Title);
     }
+
     localStorage.setItem("Note", JSON.stringify(NewArr));
+
     alert("Data Updated .... ");
+  };
+  const CancelDAta = () => {
+    navigate("/list");
   };
 
   useEffect(() => {
@@ -117,7 +122,7 @@ function EditData() {
             Update
           </button>
         </Link>
-        <button onClick={() => {}} className="btn btn-primary ms-5">
+        <button onClick={() => CancelDAta()} className="btn btn-primary ms-5">
           Cancel
         </button>
       </div>

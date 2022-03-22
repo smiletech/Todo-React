@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "@material-ui/core/Modal";
 let Arrdata = JSON.parse(localStorage.getItem("Completed")) || [];
 
-function Modale() {
+function Modale({Lendata}) {
   const [open, setOpen] = useState(false);
   const [ArrayVAL, setArrayVAL] = useState([]);
 
@@ -20,14 +20,16 @@ function Modale() {
   };
   const handleDelete = (index) => {
     Arrdata.splice(index, 1);
-    localStorage.setItem("Completed", JSON.stringify(Arrdata));
     setArrayVAL(Arrdata);
+    localStorage.setItem("Completed", JSON.stringify(Arrdata));
+    
+    Lendata()
   };
 
   return (
     <div style={{ display: "block", padding: 30 }}>
-      <button type="button" onClick={handleOpen}>
-        Click Me to Open Modal
+      <button className="btn btn-success" type="button" onClick={handleOpen}>
+        Click Me to Open Completed task
       </button>
       <Modal
         onClose={handleClose}

@@ -52,7 +52,7 @@ main tage */
 }
 
 .footer {
-  position: absolute;
+  position: relative;
   width: 100%;
   bottom: 0px;
   text-align: center;
@@ -63,11 +63,12 @@ main tage */
 }
 .todo-card {
   position: relative;
+  padding: 5px;
   width: 180px;
   margin-top: 15px;
   height: 140px;
   background-color: rgb(169, 196, 187);
-  display: table-column;
+
   border-radius: 15px;
 }
 
@@ -82,7 +83,7 @@ main tage */
   padding-top: 20px;
   padding-left: 30px;
   padding-right: 30px;
-  min-height: 88vh;
+  min-height: 75vh;
   flex-wrap: wrap;
   display: flex;
 }

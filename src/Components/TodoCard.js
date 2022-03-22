@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Draggable } from "react-beautiful-dnd";
+import { List } from "@material-ui/core";
 toast.configure();
 let doneArray = "";
 
@@ -19,22 +20,16 @@ function convertDate(inputFormat) {
 
 function TodoCard({ obj1, index, deleteCard, Done }) {
   const { id, Title, Note, date } = obj1;
-  
+  let navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
 
   const toggleHover = () => setHovered(!hovered);
 
   let d = new Date(date);
   let date1 = convertDate(d);
-  
-  const notifyD = () => {
-    toast.info("Welcome To Add", { autoClose: 3000 });
-  };
+
   const notifyW = () => {
     toast.warning("Your Task completed", { autoClose: 3000 });
-  };
-  const notifyE = () => {
-    toast.error("Your Task completed", { autoClose: 3000 });
   };
 
   useEffect(() => {
@@ -53,6 +48,8 @@ function TodoCard({ obj1, index, deleteCard, Done }) {
       localStorage.setItem("Note", JSON.stringify(Complete));
       Done(Completed.length);
       deleteCard(Complete);
+    } else {
+      navigate("/list");
     }
   };
 
@@ -66,9 +63,6 @@ function TodoCard({ obj1, index, deleteCard, Done }) {
     }
   };
 
-  async function timeDelay() {
-    await setTimeout(() => {}, 3000);
-  }
   return (
     <>
       <Draggable draggableId={index.toString()} index={index}>
